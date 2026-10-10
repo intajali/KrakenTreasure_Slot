@@ -1,0 +1,19 @@
+{
+  "paylines": [
+    { "lineIndex": 0, "rows": [1, 1, 1, 1, 1] },
+    { "lineIndex": 1, "rows": [0, 0, 0, 0, 0] },
+    { "lineIndex": 2, "rows": [2, 2, 2, 2, 2] },
+    { "lineIndex": 3, "rows": [0, 1, 2, 1, 0] },
+    { "lineIndex": 4, "rows": [2, 1, 0, 1, 2] },
+    { "lineIndex": 5, "rows": [0, 0, 1, 2, 2] },
+    { "lineIndex": 6, "rows": [2, 2, 1, 0, 0] },
+    { "lineIndex": 7, "rows": [1, 0, 0, 0, 1] },
+    { "lineIndex": 8, "rows": [1, 2, 2, 2, 1] },
+    { "lineIndex": 9, "rows": [0, 1, 1, 1, 0] },
+    { "lineIndex": 10, "rows": [2, 1, 1, 1, 2] },
+    { "lineIndex": 11, "rows": [1, 0, 1, 2, 1] },
+    { "lineIndex": 12, "rows": [1, 2, 1, 0, 1] },
+    { "lineIndex": 13, "rows": [0, 1, 0, 1, 0] },
+    { "lineIndex": 14, "rows": [2, 1, 2, 1, 2] }
+  ]
+}

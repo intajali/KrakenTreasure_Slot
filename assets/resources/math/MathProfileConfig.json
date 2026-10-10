@@ -1,0 +1,16 @@
+{
+  "activeProfile": "highVolatility",
+  "profiles": {
+    "highVolatility": {
+      "enabled": true,
+      "maxAttempts": 25,
+      "missAcceptanceRate": 1,
+      "lineHitAcceptanceRate": 0.35,
+      "bonusHitAcceptanceRate": 0.25,
+      "featureHitAcceptanceRate": 0.2,
+      "jackpotHitAcceptanceRate": 0.1,
+      "targetRtp": 0.96,
+      "theoreticalSampleSpins": 50000
+    }
+  }
+}

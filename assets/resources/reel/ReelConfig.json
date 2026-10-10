@@ -1,0 +1,16 @@
+{
+  "reelCount": 5,
+  "visibleRows": 3,
+  "spinDurationMs": 100,
+  "stopDelayMs": 0,
+  "reelStopGapMs": 25,
+  "stopDurationMs": 70,
+  "spinSpeedRowsPerSec": 28,
+  "spinAccelerationRowsPerSecSq": 160,
+  "minStopSpeedRowsPerSec": 8,
+  "stopDecelerationFactor": 7,
+  "stopExtraLaps": 0,
+  "stopBounceRows": 0.32,
+  "rowHeight": 100,
+  "reelWidth": 100
+}

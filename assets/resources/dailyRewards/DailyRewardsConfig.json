@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "weekLengthDays": 7,
+  "claimIntervalMs": 86400000,
+  "storageKey": "krakens_treasure_daily_rewards",
+  "dayRewards": [50, 75, 100, 150, 200, 300, 500]
+}

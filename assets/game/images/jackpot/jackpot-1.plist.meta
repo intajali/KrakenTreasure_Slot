@@ -1,0 +1,109 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "4c155be8-dbe6-45ee-a307-c983bd55e8ca",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "b7c10": {
+      "importer": "sprite-frame",
+      "uuid": "4c155be8-dbe6-45ee-a307-c983bd55e8ca@b7c10",
+      "displayName": "",
+      "id": "b7c10",
+      "name": "jp_win_panel",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 1536,
+        "height": 752,
+        "rawWidth": 1536,
+        "rawHeight": 752,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "9fe244b1-2658-4bd4-ba40-96d089f20582@6c48a",
+        "atlasUuid": "4c155be8-dbe6-45ee-a307-c983bd55e8ca"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "4f2cd": {
+      "importer": "sprite-frame",
+      "uuid": "4c155be8-dbe6-45ee-a307-c983bd55e8ca@4f2cd",
+      "displayName": "",
+      "id": "4f2cd",
+      "name": "kraken-bg",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": -2,
+        "trimX": 1,
+        "trimY": 755,
+        "width": 816,
+        "height": 1477,
+        "rawWidth": 816,
+        "rawHeight": 1485,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "9fe244b1-2658-4bd4-ba40-96d089f20582@6c48a",
+        "atlasUuid": "4c155be8-dbe6-45ee-a307-c983bd55e8ca"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "jackpot-1.png",
+    "format": 3,
+    "uuid": "4c155be8-dbe6-45ee-a307-c983bd55e8ca",
+    "textureUuid": "9fe244b1-2658-4bd4-ba40-96d089f20582@6c48a"
+  }
+}

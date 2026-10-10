@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "symbolId": 5,
+  "requiredCount": 10,
+  "awardPayoutMultiplier": 20,
+  "choiceCount": 3,
+  "freeSpinChance": 0.12,
+  "freeSpinCount": 3,
+  "coinMultipliers": [5, 10, 15, 25, 40]
+}

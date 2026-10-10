@@ -1,0 +1,72 @@
+<plist version="1.0">
+<dict>
+    <!-- Emission direction irrelevant, emitter moves -->
+    <key>angle</key>
+    <real>0</real>
+    <key>angleVariance</key>
+    <real>0</real>
+
+    <key>duration</key>
+    <real>-1</real>
+    <key>emitterType</key>
+    <integer>0</integer>
+
+    <!-- Particles -->
+    <key>maxParticles</key>
+    <integer>100</integer>
+    <key>particleLifespan</key>
+    <real>1.5</real>
+    <key>particleLifespanVariance</key>
+    <real>0.3</real>
+
+    <!-- Movement -->
+    <key>speed</key>
+    <real>0</real>
+    <key>speedVariance</key>
+    <real>0</real>
+    <key>radialAcceleration</key>
+    <real>0</real>
+    <key>tangentialAcceleration</key>
+    <real>0</real>
+    <key>gravityx</key>
+    <real>0</real>
+    <key>gravityy</key>
+    <real>0</real>
+
+    <!-- Size -->
+    <key>startParticleSize</key>
+    <real>6</real>
+    <key>finishParticleSize</key>
+    <real>3</real>
+
+    <!-- Color -->
+    <key>startColorRed</key>
+    <real>1.0</real>
+    <key>startColorGreen</key>
+    <real>0.8</real>
+    <key>startColorBlue</key>
+    <real>0.4</real>
+    <key>startColorAlpha</key>
+    <real>1.0</real>
+    <key>finishColorRed</key>
+    <real>1.0</real>
+    <key>finishColorGreen</key>
+    <real>0.3</real>
+    <key>finishColorBlue</key>
+    <real>0.0</real>
+    <key>finishColorAlpha</key>
+    <real>0.0</real>
+
+    <!-- Position variance -->
+    <key>sourcePositionVariancex</key>
+    <real>0</real>
+    <key>sourcePositionVariancey</key>
+    <real>0</real>
+
+    <!-- Blend mode for glow -->
+    <key>blendFuncSource</key>
+    <integer>770</integer>
+    <key>blendFuncDestination</key>
+    <integer>1</integer>
+</dict>
+</plist>

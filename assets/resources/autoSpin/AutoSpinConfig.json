@@ -1,0 +1,8 @@
+{
+  "spinCountOptions": [10, 25, 50, 100, 0],
+  "lossLimitOptions": [0, 500, 1000, 2500, 5000],
+  "defaultSpinCount": 10,
+  "defaultLossLimit": 0,
+  "unlimitedSpinCount": 999999,
+  "exitTransitionSec": 0.7
+}

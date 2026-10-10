@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "symbolId": 17,
+  "freeSpinOnly": true,
+  "appearChance": 0.35,
+  "spinsAwarded": 1,
+  "maxOverlaysPerSpin": 1
+}

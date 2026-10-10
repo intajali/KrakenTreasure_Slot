@@ -1,0 +1,284 @@
+================================================================================
+SLOT GAME - CODE FLOW
+================================================================================
+
+This document explains how the slot game starts, spins 5 reels, scrolls symbols
+one-by-one on each reel strip, and stops each reel sequentially at a specific
+strip index.
+
+
+================================================================================
+1. ARCHITECTURE OVERVIEW
+================================================================================
+
+The project is split into two layers:
+
+  CORE (assets/core/)
+    Reusable framework for any slot game.
+    - architecture/   Base MVC classes (Model, View, Controller, Service)
+    - reel/           Reel interfaces and base reel controller
+    - slot/           Multi-reel orchestration (BaseReelSetController)
+    - utilities/      ReelStripHelper (symbol window from strip index)
+    - events/         EventBus for decoupled game events
+
+  GAME (assets/game/)
+    Kraken's Treasure specific implementation.
+    - bootstrap/      GameBootstrap (entry point)
+    - reels/          ReelController, ReelView, ReelModel, ReelSpinService
+    - reels/config/   REEL_CONFIG, reel strips, demo stop indices
+
+
+Each reel follows MVC:
+
+  ReelController  -> orchestrates spin/stop (Controller)
+  ReelModel       -> stores reel index, strip, and stop position (Model)
+  ReelView        -> displays symbols and scroll animation (View)
+  ReelSpinService -> handles spin timing and stop delay (Service)
+  BaseReel        -> reel logic state (Idle / Spinning / Stopped)
+
+
+================================================================================
+2. KEY CONCEPT: REEL STRIP
+================================================================================
+
+Each of the 5 reels has its own symbol strip (a circular array of symbol IDs).
+
+  Example reel 0 strip:
+    [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]
+
+  Symbol IDs map to display strings in REEL_CONFIG.symbols:
+    0 = cherry, 1 = lemon, 2 = orange, etc.
+
+When a reel STOPS, it stops at a STRIP INDEX (not 3 separate symbol picks).
+The strip index is the position of the TOP visible row on the strip.
+
+  stopAtIndex(5) with 3 visible rows shows:
+    row 0 -> strip[5]
+    row 1 -> strip[6]
+    row 2 -> strip[7]
+
+ReelStripHelper.getVisibleSymbols() calculates this window.
+
+
+================================================================================
+3. STARTUP FLOW
+================================================================================
+
+Step 1: Scene loads
+  - GameBootstrap component is attached to a scene node.
+  - reelsContainer node is assigned in the Cocos Creator inspector.
+
+Step 2: GameBootstrap.start()
+  - Calls createReels()
+  - Schedules startSpin() after 1 second
+
+Step 3: createReels()
+  For each reel (0 to 4):
+    a) Create a node named reel_0, reel_1, ... reel_4
+    b) Add it as child of reelsContainer
+    c) Add ReelController component to the node
+    d) Call reel.setup(reelIndex, REEL_CONFIG.reelStrips[reelIndex])
+    e) Store controller in reelControllers array
+  - Pass all controllers to setReels() (BaseReelSetController)
+
+Step 4: ReelController.onLoad()  (runs when component is added)
+  a) Get or add ReelView component on the same node
+  b) Assign symbolContainer (from inspector) to the view
+  c) bind() wires together:
+       - BaseReel      (reel logic, id=0 temporarily)
+       - ReelModel     (data)
+       - ReelView      (display)
+       - ReelSpinService (timing)
+
+Step 5: ReelController.setup(reelIndex, strip)
+  a) Create BaseReel with correct reel id
+  b) Call BaseReelController.initialize(reelIndex, strip):
+       - reel.initialize()           -> state = Idle
+       - model.setReelIndex(index)
+       - model.setStrip(strip)
+       - view.setStrip(strip, visibleRows)
+       - view.initialize()           -> creates 3 label slots, shows strip[0..2]
+
+
+================================================================================
+4. SPIN FLOW (ALL 5 REELS START TOGETHER)
+================================================================================
+
+Triggered by: GameBootstrap.startSpin() after 1 second delay
+
+Step 1: GameBootstrap.startSpin()
+  - spinAll()
+  - stopSequentially(DEMO_STOP_INDICES, reelStopGapMs)
+
+Step 2: BaseReelSetController.spinAll()
+  - Emits EventBus event: SpinStarted
+  - Calls spin() on every ReelController
+
+Step 3: BaseReelController.spin()  (per reel)
+  a) service.spin(reel)
+  b) view.startSpin()
+
+Step 4: ReelSpinService.spin(reel)
+  - Records spin start time for this reel id
+  - Calls reel.spin() -> BaseReel state becomes Spinning
+
+Step 5: ReelView.startSpin()
+  - Sets isSpinning = true
+  - Starts a repeating timer every symbolTickMs (80ms)
+  - Each tick (tickSpin):
+      scrollPosition++
+      displayIndex = scrollPosition % strip.length
+      refreshDisplay(displayIndex)  -> updates 3 label emojis one step at a time
+
+Result: All 5 reels scroll their strip symbols one position at a time.
+
+
+================================================================================
+5. STOP FLOW (REELS STOP ONE BY ONE, LEFT TO RIGHT)
+================================================================================
+
+Triggered by: BaseReelSetController.stopSequentially()
+
+Config:
+  DEMO_STOP_INDICES = [2, 5, 0, 3, 6]   (one strip index per reel)
+  reelStopGapMs     = 1000              (1 second between each reel stop)
+
+Schedule:
+  Reel 0 stops at 1.0s  -> strip index 2
+  Reel 1 stops at 2.0s  -> strip index 5
+  Reel 2 stops at 3.0s  -> strip index 0
+  Reel 3 stops at 4.0s  -> strip index 3
+  Reel 4 stops at 5.0s  -> strip index 6
+
+For each scheduled stop:
+
+Step 1: ReelController.stop(stripIndex)
+
+Step 2: BaseReelController.stop(stripIndex)
+  - service.stop(reel, stripIndex, onComplete callback)
+
+Step 3: ReelSpinService.stop(reel, stripIndex, onComplete)
+  - Waits remaining stopDelayMs (minimum spin time before stop is allowed)
+  - Then calls reel.stop(stripIndex)  -> BaseReel state = Stopped
+  - Then runs onComplete callback
+
+Step 4: onComplete callback (BaseReelController)
+  - model.setStripIndex(stripIndex)   -> stores final position
+  - view.stopAtIndex(stripIndex)      -> triggers landing animation
+
+Step 5: ReelView.stopAtIndex(stripIndex)
+  - Sets targetStripIndex = stripIndex
+  - Sets isStopping = true
+  - Calculates finalScrollPosition (至少 2 full laps past current position)
+  - tickSpin continues stepping scrollPosition until landing point
+  - finishStop():
+      stops timer
+      snaps to targetStripIndex
+      refreshDisplay(targetStripIndex) -> final 3 symbols shown
+
+Step 6: BaseReelSetController (after each reel stops)
+  - Emits EventBus event: ReelStopped { reelIndex, stripIndex }
+  - When all 5 reels done: emits AllReelsStopped
+
+
+================================================================================
+6. RESET / RESPIN FLOW
+================================================================================
+
+Called by: GameBootstrap.resetAndSpin()
+
+Step 1: resetAll()
+  - Each ReelController.reset():
+      reel.reset()    -> state back to Idle
+      model.reset()   -> stripIndex back to 0
+      view.update(0)
+
+Step 2: After 1 second, startSpin() runs again (same as section 4 + 5)
+
+
+================================================================================
+7. FILE RESPONSIBILITY MAP
+================================================================================
+
+GameBootstrap.ts
+  Entry point. Creates 5 reels, starts spin, schedules sequential stops.
+
+BaseReelSetController.ts
+  Manages all reels as a set: spinAll, stopSequentially, resetAll, events.
+
+ReelController.ts
+  Game-specific reel controller. Wires MVC on onLoad(), configures strip in setup().
+
+BaseReelController.ts
+  Core orchestrator. spin() and stop() coordinate service, model, view, reel.
+
+ReelModel.ts
+  Stores reelIndex, strip reference, stripIndex, derives visibleSymbols.
+
+ReelView.ts
+  Creates 3 symbol labels. Animates strip scroll. Lands on target strip index.
+
+ReelSpinService.ts
+  Tracks spin timing. Applies stopDelayMs before allowing reel to stop.
+
+BaseReel.ts
+  Reel state machine: Idle -> Spinning -> Stopped.
+
+ReelConfig.ts
+  reelCount, visibleRows, timing, symbol emojis, 5 reel strips, demo stop indices.
+
+ReelStripHelper.ts
+  getVisibleSymbols(strip, stripIndex, visibleRows) -> [sym, sym, sym]
+
+EventBus.ts
+  SpinStarted, ReelStopped, AllReelsStopped events for future features (win, UI).
+
+
+================================================================================
+8. DATA FLOW DIAGRAM (TEXT)
+================================================================================
+
+  GameBootstrap
+       |
+       | createReels()
+       v
+  ReelController (x5) ----setup----> ReelModel, ReelView, ReelSpinService, BaseReel
+       |
+       | startSpin()
+       v
+  spinAll() --> [each reel].spin()
+       |              |
+       |              +--> ReelSpinService.spin() --> BaseReel.spin()
+       |              +--> ReelView.startSpin() --> tick every 80ms
+       |
+       v
+  stopSequentially([2,5,0,3,6])
+       |
+       +--> reel 0 @ 1s --> stop(2) --> service delay --> view.stopAtIndex(2)
+       +--> reel 1 @ 2s --> stop(5) --> service delay --> view.stopAtIndex(5)
+       +--> reel 2 @ 3s --> stop(0) --> ...
+       +--> reel 3 @ 4s --> stop(3) --> ...
+       +--> reel 4 @ 5s --> stop(6) --> AllReelsStopped event
+
+
+================================================================================
+9. CUSTOMIZATION POINTS
+================================================================================
+
+Change reel strips and stop results:
+  assets/game/reels/config/ReelConfig.ts
+    - reelStrips: symbol ID arrays per reel
+    - DEMO_STOP_INDICES: strip index per reel on stop
+
+Change timing:
+  REEL_CONFIG.symbolTickMs     -> scroll speed (lower = faster)
+  REEL_CONFIG.reelStopGapMs    -> gap between reel stops
+  REEL_CONFIG.stopDelayMs      -> minimum spin time before a reel can stop
+
+Change visible window size:
+  REEL_CONFIG.visibleRows      -> number of symbols shown per reel (default 3)
+
+
+================================================================================
+END
+================================================================================

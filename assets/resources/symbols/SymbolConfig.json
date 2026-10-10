@@ -1,0 +1,236 @@
+[
+  {
+    "id": 0,
+    "name": "ace",
+    "symbol": "A",
+    "weight": 24,
+    "atlasFrameName": "A",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/low/A/spriteFrame"
+  },
+  {
+    "id": 1,
+    "name": "king",
+    "symbol": "K",
+    "weight": 22,
+    "atlasFrameName": "K",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/low/K/spriteFrame"
+  },
+  {
+    "id": 2,
+    "name": "queen",
+    "symbol": "Q",
+    "weight": 20,
+    "atlasFrameName": "Q",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/low/Q/spriteFrame"
+  },
+  {
+    "id": 3,
+    "name": "jack",
+    "symbol": "J",
+    "weight": 18,
+    "atlasFrameName": "J",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/low/J/spriteFrame"
+  },
+  {
+    "id": 4,
+    "name": "ten",
+    "symbol": "10",
+    "weight": 14,
+    "atlasFrameName": "10",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/10/spriteFrame"
+  },
+  {
+    "id": 5,
+    "name": "chest",
+    "symbol": "CH",
+    "weight": 12,
+    "atlasFrameName": "CHEST",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/high/CHEST/spriteFrame"
+  },
+  {
+    "id": 6,
+    "name": "wheel",
+    "symbol": "WH",
+    "weight": 10,
+    "atlasFrameName": "WHEEL",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/high/WHEEL/spriteFrame"
+  },
+  {
+    "id": 7,
+    "name": "pirate",
+    "symbol": "PR",
+    "weight": 8,
+    "atlasFrameName": "PIRATE",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/high/PIRATE/spriteFrame"
+  },
+  {
+    "id": 8,
+    "name": "kraken",
+    "symbol": "KR",
+    "weight": 6,
+    "atlasFrameName": "KRAKEN",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/high/KRAKEN/spriteFrame"
+  },
+  {
+    "id": 9,
+    "name": "scatter",
+    "symbol": "SC",
+    "weight": 4,
+    "atlasFrameName": "SCATTER",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/special/SCATTER/spriteFrame"
+  },
+  {
+    "id": 10,
+    "name": "wild",
+    "symbol": "WD",
+    "weight": 5,
+    "atlasFrameName": "WILD",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/special/WILD/spriteFrame"
+  },
+  {
+    "id": 11,
+    "name": "bonus",
+    "symbol": "BN",
+    "weight": 3,
+    "atlasFrameName": "BONUS",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/special/BONUS/spriteFrame"
+  },
+  {
+    "id": 12,
+    "name": "jackpot_mini",
+    "symbol": "JMN",
+    "weight": 3,
+    "atlasFrameName": "MINI",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/jackpot/MINI/spriteFrame"
+  },
+  {
+    "id": 13,
+    "name": "jackpot_maxi",
+    "symbol": "JMX",
+    "weight": 2,
+    "atlasFrameName": "MAXI",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/jackpot/MAXI/spriteFrame"
+  },
+  {
+    "id": 14,
+    "name": "jackpot_mega",
+    "symbol": "JMG",
+    "weight": 2,
+    "atlasFrameName": "MEGA",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/jackpot/MEGA/spriteFrame"
+  },
+  {
+    "id": 15,
+    "name": "jackpot_grand",
+    "symbol": "JGG",
+    "weight": 1,
+    "atlasFrameName": "GRAND",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/jackpot/GRAND/spriteFrame"
+  },
+  {
+    "id": 16,
+    "name": "jackpot_pearl",
+    "symbol": "JPL",
+    "weight": 1,
+    "atlasFrameName": "PEARL",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/jackpot/PEARL/spriteFrame"
+  },
+  {
+    "id": 17,
+    "name": "addspin",
+    "symbol": "AS",
+    "weight": 0,
+    "atlasFrameName": "ADDSPIN",
+    "atlasResourcePath": "symbols/symbols",
+    "spriteFrameResourcePath": "symbols/special/ADDSPIN/spriteFrame"
+  },
+  {
+    "id": 18,
+    "name": "reward_r1",
+    "symbol": "R1",
+    "weight": 0,
+    "atlasFrameName": "R1",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/R1/spriteFrame"
+  },
+  {
+    "id": 19,
+    "name": "reward_r2",
+    "symbol": "R2",
+    "weight": 0,
+    "atlasFrameName": "R2",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/R2/spriteFrame"
+  },
+  {
+    "id": 20,
+    "name": "reward_r3",
+    "symbol": "R3",
+    "weight": 0,
+    "atlasFrameName": "R3",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/R3/spriteFrame"
+  },
+  {
+    "id": 21,
+    "name": "reward_r4",
+    "symbol": "R4",
+    "weight": 0,
+    "atlasFrameName": "R4",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/R4/spriteFrame"
+  },
+  {
+    "id": 22,
+    "name": "reward_x2",
+    "symbol": "X2",
+    "weight": 0,
+    "atlasFrameName": "X2",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/X2/spriteFrame"
+  },
+  {
+    "id": 23,
+    "name": "reward_x3",
+    "symbol": "X3",
+    "weight": 0,
+    "atlasFrameName": "X3",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/X3/spriteFrame"
+  },
+  {
+    "id": 24,
+    "name": "reward_x4",
+    "symbol": "X4",
+    "weight": 0,
+    "atlasFrameName": "X4",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/X4/spriteFrame"
+  },
+  {
+    "id": 25,
+    "name": "reward_x5",
+    "symbol": "X5",
+    "weight": 0,
+    "atlasFrameName": "X5",
+    "atlasResourcePath": "symbols/jackpot",
+    "spriteFrameResourcePath": "symbols/rewards/X5/spriteFrame"
+  }
+]
